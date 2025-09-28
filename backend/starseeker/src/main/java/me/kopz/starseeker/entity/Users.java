@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-public class User {
+public class Users {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,10 +19,10 @@ public class User {
   @JsonManagedReference
   private List<Contract> contracts;
 
-  public User() {
+  public Users() {
   }
 
-  public User(Long id, String email, String password, String username, List<Contract> contracts) {
+  public Users(Long id, String email, String password, String username, List<Contract> contracts) {
     this.id = id;
     this.email = email;
     this.password = password;

@@ -18,7 +18,38 @@ public class Contract {
   @ManyToOne
   @JoinColumn(name = "user_id")
   @JsonBackReference
-  private User user;
+  private Users user;
 
+  public Contract() {
+  }
 
+  public Contract(Long id, Artist artist, Users user) {
+    this.id = id;
+    this.artist = artist;
+    this.user = user;
+  }
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public Artist getArtist() {
+    return artist;
+  }
+
+  public void setArtist(Artist artist) {
+    this.artist = artist;
+  }
+
+  public Users getUser() {
+    return user;
+  }
+
+  public void setUser(Users user) {
+    this.user = user;
+  }
 }

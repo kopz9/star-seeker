@@ -22,15 +22,13 @@ public class Artist {
   public Artist() {
   }
 
-  public Artist(Long id, String uri, String name, String imageUrl, Contract contractor) {
+  public Artist(Long id, String uri, String name, String imageUrl, List<Contract> contracts) {
     this.id = id;
     this.uri = uri;
     this.name = name;
     this.imageUrl = imageUrl;
-    this.contractor = contractor;
+    this.contracts = contracts;
   }
-
-  private Contract contractor;
 
   public Long getId() {
     return id;
@@ -64,11 +62,11 @@ public class Artist {
     this.imageUrl = imageUrl;
   }
 
-  public Contract getContractor() {
-    return contractor;
+  public List<Contract> getContracts() {
+    return contracts;
   }
 
-  public void setContractor(Contract contractor) {
-    this.contractor = contractor;
+  public void setContracts(List<Contract> contracts) {
+    this.contracts = contracts;
   }
 }
