@@ -10,4 +10,5 @@ um aplicativo que voce pode contratar artistas.
 
 TODO: 
 
-[] fazer request pra api 
+[x] fazer request pra api 
+[] parte de salvar qual o usuario escolheu 
