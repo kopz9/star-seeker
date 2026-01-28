@@ -1,4 +1,11 @@
 package me.kopz.starseeker.entity.dto;
 
-public record LoginRequestDTO(String username, String email, String password) {
+import jakarta.validation.constraints.NotBlank;
+
+public record LoginRequestDTO(
+    @NotBlank(message = "Username is required")
+    String username,
+
+    @NotBlank(message = "Password is required")
+    String password) {
 }

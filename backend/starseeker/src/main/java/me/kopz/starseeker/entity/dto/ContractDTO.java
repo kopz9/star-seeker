@@ -1,4 +1,12 @@
 package me.kopz.starseeker.entity.dto;
 
-public record ContractDTO(Long id, Long artistId, Long userId) {
+import jakarta.validation.constraints.NotNull;
+
+public record ContractDTO(
+    Long id,
+
+    @NotNull(message = "Artist ID is required")
+    Long artistId,
+
+    Long userId) {
 }

@@ -1,6 +1,7 @@
 package me.kopz.starseeker.controller;
 
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import me.kopz.starseeker.entity.dto.UserDTO;
 import me.kopz.starseeker.entity.dto.UserResponseDTO;
 import me.kopz.starseeker.exception.AppException;
@@ -25,7 +26,7 @@ public class UserController {
 
   @Transactional
   @PostMapping
-  public ResponseEntity<UserResponseDTO> createUser(@RequestBody UserDTO userDTO) throws AppException {
+  public ResponseEntity<UserResponseDTO> createUser(@Valid @RequestBody UserDTO userDTO) throws AppException {
     UserResponseDTO user = userService.createUser(userDTO);
     return ResponseEntity.status(HttpStatus.CREATED).body(user);
   }

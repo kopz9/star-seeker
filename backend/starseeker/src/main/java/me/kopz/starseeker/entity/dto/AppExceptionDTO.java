@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class AppExceptionDTO implements Serializable {
 
   @Serial
-  public static final long serialVearsionUID = 1L;
+  public static final long serialVersionUID = 1L;
 
   private String message;
   private Integer statusCode;

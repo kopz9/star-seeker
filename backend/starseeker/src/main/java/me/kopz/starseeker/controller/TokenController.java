@@ -41,7 +41,7 @@ public class TokenController {
       throw new AppException("Email or password is invalid", HttpStatus.BAD_REQUEST);
     }
 
-    var expiresIn = 300L;
+    var expiresIn = 3600L;
     var now = Instant.now();
 
     var scopes = user.get().getRoles()

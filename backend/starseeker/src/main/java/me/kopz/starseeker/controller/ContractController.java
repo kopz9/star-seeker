@@ -1,5 +1,6 @@
 package me.kopz.starseeker.controller;
 
+import jakarta.validation.Valid;
 import me.kopz.starseeker.entity.dto.ContractDTO;
 import me.kopz.starseeker.exception.AppException;
 import me.kopz.starseeker.service.ContractService;
@@ -21,7 +22,7 @@ public class ContractController {
   }
 
   @PostMapping
-  public ResponseEntity<ContractDTO> createContract(@AuthenticationPrincipal JwtAuthenticationToken token, @RequestBody ContractDTO contractDTO) throws AppException {
+  public ResponseEntity<ContractDTO> createContract(@AuthenticationPrincipal JwtAuthenticationToken token,@Valid @RequestBody ContractDTO contractDTO) throws AppException {
     ContractDTO contract = contractService.hireArtist(token, contractDTO);
     return ResponseEntity.status(HttpStatus.CREATED).body(contract);
   }
