@@ -5,6 +5,7 @@ import me.kopz.starseeker.entity.Artist;
 import me.kopz.starseeker.entity.Contract;
 import me.kopz.starseeker.entity.Users;
 import me.kopz.starseeker.entity.dto.ContractDTO;
+import me.kopz.starseeker.entity.dto.ContractResponseDTO;
 import me.kopz.starseeker.exception.AppException;
 import me.kopz.starseeker.mapper.ContractMapper;
 import me.kopz.starseeker.repository.ArtistRepository;
@@ -69,20 +70,20 @@ public class ContractService {
     return mapper.toDTO(saved);
   }
 
-  public List<ContractDTO> listContractsForUser(JwtAuthenticationToken token){
+  public List<ContractResponseDTO> listContractsForUser(JwtAuthenticationToken token){
     Long tokenId = getTokenId(token);
     List<Contract> contracts = contractRepository.findAllByUserId(tokenId);
-    return contracts.stream().map(mapper::toDTO).toList();
+    return contracts.stream().map(mapper::toResponseDTO).toList();
   }
 
-  public ContractDTO getContractById(Long id, JwtAuthenticationToken token) throws AppException {
+  public ContractResponseDTO getContractById(Long id, JwtAuthenticationToken token) throws AppException {
 
     var contract = contractRepository.findById(id).orElseThrow(() -> new AppException("Contract not found.", HttpStatus.NOT_FOUND));
 
     Long tokenId = getTokenId(token);
     checkAuthorization(tokenId, contract.getUser().getId());
 
-    return mapper.toDTO(contract);
+    return mapper.toResponseDTO(contract);
   }
 
   @Transactional

@@ -2,6 +2,7 @@ package me.kopz.starseeker.controller;
 
 import jakarta.validation.Valid;
 import me.kopz.starseeker.entity.dto.ContractDTO;
+import me.kopz.starseeker.entity.dto.ContractResponseDTO;
 import me.kopz.starseeker.exception.AppException;
 import me.kopz.starseeker.service.ContractService;
 import org.springframework.http.HttpStatus;
@@ -25,14 +26,14 @@ public class ContractController {
   }
 
   @GetMapping
-  public ResponseEntity<List<ContractDTO>> getUserContractById(JwtAuthenticationToken token){
-    List<ContractDTO> contracts = contractService.listContractsForUser(token);
+  public ResponseEntity<List<ContractResponseDTO>> getUserContractById(JwtAuthenticationToken token){
+    List<ContractResponseDTO> contracts = contractService.listContractsForUser(token);
     return ResponseEntity.ok(contracts);
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<ContractDTO> getContractById(@PathVariable Long id, JwtAuthenticationToken token) throws AppException {
-    ContractDTO contract = contractService.getContractById(id, token);
+  public ResponseEntity<ContractResponseDTO> getContractById(@PathVariable Long id, JwtAuthenticationToken token) throws AppException {
+    ContractResponseDTO contract = contractService.getContractById(id, token);
     return ResponseEntity.ok(contract);
   }
 
