@@ -5,6 +5,7 @@ import type {
   User,
   SpotifySearchResponse,
   Contract,
+  ContractResponse,
   AppException,
   ValidationError,
 } from '../types/api';
@@ -101,6 +102,13 @@ export const api = {
       body: JSON.stringify({ artistId }),
     });
     return handleResponse<Contract>(response);
+  },
+
+  async getMyContracts(token: string): Promise<ContractResponse[]> {
+    const response = await fetch(`${API_BASE_URL}/contracts`, {
+      headers: getAuthHeader(token),
+    });
+    return handleResponse<ContractResponse[]>(response);
   },
 
   async deleteContract(contractId: number, token: string): Promise<void> {

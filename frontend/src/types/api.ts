@@ -30,6 +30,7 @@ export interface Artist {
 }
 
 export interface SpotifySearchResponse {
+  id: number;
   name: string;
   imageUrl: string;
 }
@@ -39,6 +40,14 @@ export interface Contract {
   artistId: number;
   userId: number;
   artist?: Artist;
+}
+
+export interface ContractResponse{
+  id: number;
+  artistId: number;
+  artistName: string;
+  artistImageUrl: string;
+  userId: number;
 }
 
 export interface ContractWithArtist extends Contract {

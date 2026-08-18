@@ -1,10 +1,14 @@
 import React from 'react';
 import { useAuth } from '../hooks/useAuth';
-import { LogOut, User, Star } from 'lucide-react';
+import { LogOut, User, Star, Search, Users } from 'lucide-react';
 
-export function Navbar() {
+interface NavbarProps {
+  activeTab: 'search' | 'contracts';
+  onTabChange: (tab: 'search' | 'contracts') => void;
+}
+
+export function Navbar({ activeTab, onTabChange }: NavbarProps) {
   const { user, logout, isAuthenticated } = useAuth();
-
   if (!isAuthenticated) return null;
 
   return (
@@ -20,12 +24,36 @@ export function Navbar() {
             </h1>
           </div>
 
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => onTabChange('search')}
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all ${
+                activeTab === 'search'
+                  ? 'bg-gradient-to-r from-purple-500 to-pink-600 text-white'
+                  : 'text-gray-400 hover:text-white hover:bg-white/5'
+              }`}
+            >
+              <Search className="w-4 h-4" />
+              Discover
+            </button>
+            <button
+              onClick={() => onTabChange('contracts')}
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all ${
+                activeTab === 'contracts'
+                  ? 'bg-gradient-to-r from-purple-500 to-pink-600 text-white'
+                  : 'text-gray-400 hover:text-white hover:bg-white/5'
+              }`}
+            >
+              <Users className="w-4 h-4" />
+              My Artists
+            </button>
+          </div>
+
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-3 px-4 py-2 bg-white/5 rounded-lg border border-white/10">
               <User className="w-5 h-5 text-purple-400" />
               <span className="text-white font-medium">{user?.username}</span>
             </div>
-
             <button
               onClick={logout}
               className="flex items-center gap-2 px-4 py-2 bg-red-500/10 hover:bg-red-500/20 text-red-400 font-medium rounded-lg border border-red-500/30 hover:border-red-500/50 transition-all"

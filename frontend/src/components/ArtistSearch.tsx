@@ -35,22 +35,19 @@ export function ArtistSearch() {
     }
   };
 
-  const handleHireArtist = async (artistName: string) => {
+  const handleHireArtist = async (artist: SpotifySearchResponse) => {
     if (!token) return;
 
     setError('');
     setSuccessMessage('');
-    setHiringArtist(artistName);
+    setHiringArtist(artist.name);
 
     try {
-      // Note: This would need the artist ID, but the search endpoint only returns name and imageUrl
-      // You'll need to modify your backend to return artist IDs or create artists on hire
-      // For now, this is a placeholder
-      setSuccessMessage(`Successfully hired ${artistName}!`);
+      await api.createContract(artist.id, token);
+      setSuccessMessage(`Successfully hired ${artist.name}!`);
       
-      // Remove the hired artist from results after a delay
       setTimeout(() => {
-        setResults(results.filter(r => r.name !== artistName));
+        setResults(results.filter(r => r.id !== artist.id));
         setSuccessMessage('');
       }, 2000);
     } catch (err) {
@@ -139,7 +136,7 @@ export function ArtistSearch() {
               </h3>
 
               <button
-                onClick={() => handleHireArtist(artist.name)}
+                onClick={() => handleHireArtist(artist)}
                 disabled={hiringArtist === artist.name}
                 className="w-full flex items-center justify-center gap-2 py-2.5 px-4 bg-gradient-to-r from-purple-500 to-pink-600 text-white font-semibold rounded-lg hover:from-purple-600 hover:to-pink-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all transform hover:scale-105 active:scale-95"
               >
