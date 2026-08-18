@@ -9,7 +9,6 @@ import me.kopz.starseeker.repository.UserRepository;
 import me.kopz.starseeker.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
