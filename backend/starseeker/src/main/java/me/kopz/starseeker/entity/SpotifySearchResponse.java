@@ -1,4 +1,4 @@
 package me.kopz.starseeker.entity;
 
-public record SpotifySearchResponse(String name, String imageUrl) {
+public record SpotifySearchResponse(Long id, String name, String imageUrl) {
 }

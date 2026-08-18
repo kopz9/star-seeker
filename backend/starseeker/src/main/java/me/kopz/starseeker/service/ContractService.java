@@ -14,6 +14,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ContractService {
 
@@ -65,6 +67,12 @@ public class ContractService {
     Contract saved = contractRepository.save(contract);
 
     return mapper.toDTO(saved);
+  }
+
+  public List<ContractDTO> listContractsForUser(JwtAuthenticationToken token){
+    Long tokenId = getTokenId(token);
+    List<Contract> contracts = contractRepository.findAllByUserId(tokenId);
+    return contracts.stream().map(mapper::toDTO).toList();
   }
 
   public ContractDTO getContractById(Long id, JwtAuthenticationToken token) throws AppException {
